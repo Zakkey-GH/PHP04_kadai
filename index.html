@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>写真アップロードアプリ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            margin: 20px 0;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>写真アップロードアプリ</h1>
+    <form id="photoForm" enctype="multipart/form-data" method="post" action="save_photo.php">
+        <input type="text" name="photo_name" id="photo_name" placeholder="写真名" required>
+        <textarea name="photo_comment" id="photo_comment" placeholder="写真コメント"></textarea>
+        <input type="file" name="photo_file" id="photo_file" accept="image/jpeg, image/png" required>
+        <button type="submit">アップロード</button>
+        <div id="message" class="message"></div>
+    </form>
+</body>
+</html>
