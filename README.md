@@ -6,7 +6,7 @@ PHP02の課題から更新/削除の機能を追加したもの
 
 
 ## ③アプリのデプロイURL
-https://gsacademyyy.sakura.ne.jp/apis/kadai/index.html
+********
 
 ## ④アプリのログイン用IDまたはPassword（ある場合）
 - ID: なし
