@@ -8,12 +8,8 @@ $photo_comment = $_POST["photo_comment"];
 
 
 //2. DB接続します
-try {
-  //Password:MAMP='root',XAMPP=''
-  $pdo = new PDO('mysql:dbname=PhotoApp;charset=utf8;host=localhost','root',''); //PDO:Php Data Object
-    } catch (PDOException $e) {
-    exit('DBConnectError:'.$e->getMessage());
-}
+include("funcs.php");
+$pdo = db_conn();
 
 
 
@@ -47,8 +43,7 @@ try {
 
 if($status==false){
     //SQL実行時にエラーがある場合（エラーオブジェクト取得して表示）
-    $error = $stmt->errorInfo();
-    exit("SQLError:".$error[2]);
+    sql_error($stmt);
 }else{
     //５．index.phpへリダイレクト
     header("Location: index_1.php");

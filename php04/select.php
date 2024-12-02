@@ -1,12 +1,18 @@
 <?php
+//0. SESSION開始！！
+session_start();
+
+//１．関数群の読み込み
 include("funcs.php");
-$pdo = db_conn();
+
+//LOGINチェック → funcs.phpへ関数化しましょう！
+sschk();
 
 //２．データ登録SQL作成
-$sql = "SELECT * FROM Photos";
+$pdo = db_conn();
+$sql = "SELECT * FROM gs_an_table";
 $stmt = $pdo->prepare($sql);
 $status = $stmt->execute();
-
 
 //３．データ表示
 $values = "";
@@ -19,6 +25,7 @@ $values =  $stmt->fetchAll(PDO::FETCH_ASSOC); //PDO::FETCH_ASSOC[カラム名の
 $json = json_encode($values,JSON_UNESCAPED_UNICODE);
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -37,12 +44,18 @@ $json = json_encode($values,JSON_UNESCAPED_UNICODE);
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-      <a class="navbar-brand" href="index_1.php">データ登録</a>
+      <?=$_SESSION["name"]?>さん、こんにちは。
+      <a class="navbar-brand" href="index.php">データ登録</a>
+      <?php if($_SESSION["kanri_flg"]=="1"){ ?>
+      <a class="navbar-brand" href="user.php">ユーザー登録</a>
+      <?php } ?>
+      <a class="navbar-brand" href="logout.php">ログアウト</a>
       </div>
     </div>
   </nav>
 </header>
 <!-- Head[End] -->
+
 
 <!-- Main[Start] -->
 <div>
@@ -51,12 +64,11 @@ $json = json_encode($values,JSON_UNESCAPED_UNICODE);
       <table>
       <?php foreach($values as $v){ ?>
         <tr>
-          <td><?=h($v["id"])?></td>
-          <td><?=h($v["photo_name"])?></td>
-          <td><?=h($v["photo_comment"])?></td>
-          <td><a href="delete.php?id=<?=h($v["id"])?>">[削除]</a></td>
-          <td><a href="detail.php?id=<?=h($v["id"])?>">[更新]<a></td>
-          <td></td>
+          <td><?=$v["id"]?></td>
+          <td><a href="detail.php?id=<?=$v["id"]?>"><?=$v["name"]?></a></td>
+          <?php if($_SESSION["kanri_flg"]=="1"){?>
+          <td><a href="delete.php?id=<?=$v["id"]?>">[削除]</a></td>
+          <?php }?>
         </tr>
       <?php } ?>
       </table>
@@ -65,10 +77,10 @@ $json = json_encode($values,JSON_UNESCAPED_UNICODE);
 </div>
 <!-- Main[End] -->
 
+
 <script>
   const a = '<?php echo $json; ?>';
   console.log(JSON.parse(a));
 </script>
 </body>
 </html>
-

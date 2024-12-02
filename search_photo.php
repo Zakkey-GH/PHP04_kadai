@@ -1,11 +1,8 @@
 <?php
 
-try {
-    // DB接続
-    $pdo = new PDO('mysql:dbname=PhotoApp;charset=utf8;host=localhost', 'root', '');
-} catch (PDOException $e) {
-    exit('DBConnectError:' . $e->getMessage());
-}
+//DB接続
+include("funcs.php");
+$pdo = db_conn();
 
 // 検索キーワードを取得（POSTリクエストか確認）
 $query = isset($_POST['query']) ? $_POST['query'] : '';
