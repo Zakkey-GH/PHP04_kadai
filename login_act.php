@@ -25,7 +25,6 @@ if($status==false){
 $val = $stmt->fetch();         //1レコードだけ取得する方法
 //$count = $stmt->fetchColumn(); //SELECT COUNT(*)で使用可能()
 
-
 //5.該当１レコードがあればSESSIONに値を代入
 //入力したPasswordと暗号化されたPasswordを比較！[戻り値：true,false]
 $pw = password_verify($lpw, $val["lpw"]); //$lpw = password_hash($lpw, PASSWORD_DEFAULT);   //パスワードハッシュ化
@@ -36,6 +35,7 @@ if($pw){
   $_SESSION["name"]      = $val['name'];
   //Login成功時（select.phpへ）
   redirect("select.php");
+  // echo $val["name"];
 
 }else{
   //Login失敗時(login.phpへ)
@@ -44,5 +44,4 @@ if($pw){
 }
 
 exit();
-
 
