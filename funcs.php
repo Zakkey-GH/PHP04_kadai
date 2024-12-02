@@ -33,3 +33,14 @@ function redirect($filename){
     header("Location: ".$filename);
     exit();
 }
+
+
+//SessionCheck(スケルトン)
+function sschk(){
+    if(!isset($_SESSION["chk_ssid"]) || $_SESSION["chk_ssid"]!=session_id()){
+    exit("Login Error");
+    }else{
+    session_regenerate_id(true); //セッションハイジャック対策
+    $_SESSION["chk_ssid"] = session_id();
+    }
+}

@@ -37,7 +37,7 @@ $json = json_encode($values,JSON_UNESCAPED_UNICODE);
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-      <a class="navbar-brand" href="index_1.php">データ登録</a>
+      <a class="navbar-brand" href="index.php">データ登録</a>
       </div>
     </div>
   </nav>

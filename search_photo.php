@@ -49,7 +49,7 @@ try {
             $('#results').empty();
 
             // index.php に遷移
-            window.location.href = 'index_1.php';
+            window.location.href = 'index.php';
         });
 
         // ページリロード時にキャッシュを無効化
